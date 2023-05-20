@@ -14,10 +14,8 @@ interface MemeDisplayProps {
  */
 export default function MemeDisplay({ template, values }: MemeDisplayProps) {
   const [memeRef, { width }] = useElementSize();
-  const ratio = width / 1200;
+  const ratio = width / template.background.width;
   const downloadRef = useRef<HTMLDivElement>(null);
-
-  console.log({ width });
 
   // const onButtonClick = useCallback(() => {
   //   if (downloadRef.current === null) {
@@ -45,7 +43,7 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
           height={template.background.height}
           alt={template.background.alt}
           style={{
-            width: '100%', //? 왜 필요?
+            // width: '100%', //? 왜 필요?
             overflow: 'hidden',
           }}
         />
@@ -62,7 +60,7 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
           >
             <div
               className={`text-center ${
-                textarea.color ?? 'white'
+                textarea.outlineColor ?? 'black'
               }-contrast-outline`}
               style={{
                 fontSize: textarea.size * ratio,
