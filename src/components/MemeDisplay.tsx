@@ -43,7 +43,7 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
           height={template.background.height}
           alt={template.background.alt}
           style={{
-            // width: '100%', //? 왜 필요?
+            width: '100%', //? 왜 필요?
             overflow: 'hidden',
           }}
         />

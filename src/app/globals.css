@@ -11,6 +11,24 @@
 }
 
 @layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #a5b4fc;
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar-dark::-webkit-scrollbar-thumb {
+    background-color: #312e81;
+  }
+
   /* 외곽선 스타일 */
   .black-contrast-outline {
     text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white,

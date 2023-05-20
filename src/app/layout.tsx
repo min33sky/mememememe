@@ -15,7 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`overflow-y-scroll custom-scrollbar px-4 bg-slate-900 text-white ${inter.className}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
