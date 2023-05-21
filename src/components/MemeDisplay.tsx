@@ -36,7 +36,7 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
 
   return (
     <div ref={downloadRef}>
-      <div ref={memeRef} className="relative">
+      <div ref={memeRef} className="relative shadow-lg">
         <Image
           src={template.background.src}
           width={template.background.width}
