@@ -37,7 +37,7 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
   console.log('너비: ', width);
 
   return (
-    <div className="relative h-full bg-blue-500 shadow-lg">
+    <div className="relative bg-blue-500 shadow-lg">
       <div ref={downloadRef} className="">
         <Image
           ref={memeRef}
@@ -45,11 +45,11 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
           width={template.background.width}
           height={template.background.height}
           alt={template.background.alt}
-          style={{
-            width: '100%',
-            maxWidth: '300px',
-            // overflow: 'hidden',
-          }}
+          // style={{
+          //   width: '100%',
+          //   // maxWidth: '300px',
+          //   // overflow: 'hidden',
+          // }}
         />
         {template.textareas.map((textarea, index) => (
           <div

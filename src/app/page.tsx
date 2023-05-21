@@ -12,7 +12,7 @@ export default async function Home() {
   }).then((res) => res.json());
 
   return (
-    <main className="mx-auto max-w-[1200px]">
+    <main className="mx-auto max-w-[1200px] px-4 md:px-0">
       <MemeEditor templates={memeTemplates} />
 
       {/* TODO: 아래 부분 지우고 모달로 표시하기 */}

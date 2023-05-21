@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`custom-scrollbar relative overflow-y-scroll bg-slate-100 px-2 lg:px-0 ${inter.className}`}
+        className={`custom-scrollbar relative overflow-y-scroll bg-slate-100${inter.className}`}
       >
         <ModalContextProvider>{children}</ModalContextProvider>
       </body>

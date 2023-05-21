@@ -83,17 +83,19 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
   }, [templates]);
 
   return (
-    <div className="max-h-screen overflow-hidden">
+    <div className="overflow-hidden">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid h-screen grid-cols-1 grid-rows-2 gap-6 rounded-md bg-white px-2 py-4 shadow-lg md:grid-cols-3 md:grid-rows-1 md:gap-4"
+        className="grid h-screen grid-cols-1 grid-rows-2 rounded-md bg-white px-2 shadow-lg md:grid-cols-3 md:grid-rows-1 md:gap-4"
       >
-        <div className=" max-h-full md:col-span-2">
-          <MemeDisplay template={template} values={values} />
+        <div className="flex items-center justify-center overflow-hidden md:col-span-2">
+          <div className="w-2/3 md:w-4/5">
+            <MemeDisplay template={template} values={values} />
+          </div>
         </div>
 
-        <div className="flex flex-col justify-between">
-          <div className="space-y-4">
+        <div className="flex flex-col justify-between py-4">
+          <div className="space-y-3">
             <h2 className="text-sm font-bold">원하는 템플릿을 선택하세요.</h2>
             <Select
               className="w-full text-slate-800"
@@ -117,12 +119,12 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
             />
 
             {/* 인풋 */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {template.textareas.map((textarea, index) => (
-                <div key={index} className="space-y-2">
+                <div key={index} className="space-y-1">
                   <label
                     htmlFor={textarea.id}
-                    className="flex items-center space-x-1 text-sm font-bold"
+                    className="flex items-center space-x-1 text-xs font-bold md:text-sm"
                   >
                     <PencilIcon className="h-3 w-3" />
                     <span>{textarea.id.toUpperCase()}</span>
@@ -130,7 +132,7 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
                   <input
                     {...register(`values.${textarea.id}`)}
                     id={textarea.id}
-                    className="w-full border-b-2 bg-transparent text-lg outline-none"
+                    className="w-full border-b-2 bg-transparent text-base outline-none md:text-lg"
                     type="text"
                     placeholder="텍스트를 입력하세요."
                   />
