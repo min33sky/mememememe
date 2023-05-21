@@ -7,6 +7,7 @@ import Select from 'react-select';
 import MemeDisplay from './MemeDisplay';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import { useModal } from '@/contexts/modalContext';
+import { useMemes } from '@/contexts/memesContext';
 
 const textValues = (template: MemeTemplate) =>
   template.textareas.reduce(
@@ -27,6 +28,7 @@ interface MemeEditorProps {
 }
 
 export default function MemeEditor({ templates }: MemeEditorProps) {
+  const { addMeme } = useMemes();
   const { register, handleSubmit, watch, setValue } = useForm({
     defaultValues: {
       template: templates[0].id,
@@ -35,7 +37,6 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
   });
 
   const templateId = watch('template');
-  console.log('templateId', templateId);
 
   const template = templates.find((template) => template.id === templateId)!;
 
@@ -51,8 +52,6 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
     values: Record<string, string>;
   }) => {
     console.log('#### 만드는 중 ####');
-    console.log('#### template: ', template);
-    console.log('#### values: ', values);
 
     await fetch('http://localhost:3000/api/memes', {
       method: 'POST',
@@ -64,11 +63,20 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
         values: data.values,
       }),
     });
+
+    // addMeme({
+    //   ...data,
+    //   id: Math.random().toString(36).substr(2, 9),
+    // });
+
     startTransition(() => {
       router.refresh();
 
       //? 모달 열기
-      openModal();
+      console.log('모달 열기');
+      setTimeout(() => {
+        openModal();
+      }, 1000);
     });
   };
 

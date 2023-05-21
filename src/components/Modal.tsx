@@ -1,12 +1,21 @@
 'use client';
 
+import { useMemes } from '@/contexts/memesContext';
 import React from 'react';
+import MemeDisplay from './MemeDisplay';
+import memeTemplates from '@/data/memeTemplates';
 
 interface ModalProps {
   closeModal?: () => void;
 }
 
 const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
+  const { memes } = useMemes();
+
+  console.log('memes: ', memes);
+
+  const meme = memes[0];
+
   return (
     <dialog
       ref={ref}
@@ -32,13 +41,14 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
           </button>
         </header>
 
-        <div className="animate-pulse bg-slate-400 p-4">
-          <p>내용</p>
-          <p>내용</p>
-          <p>내용</p>
-          <p>내용</p>
-          <p>내용</p>
-          <p>내용</p>
+        <div className="bg-slate-400 p-4">
+          {/* <MemeDisplay
+            key={meme.id}
+            template={
+              memeTemplates.find((template) => template.id === meme.template)!
+            }
+            values={meme.values}
+          /> */}
         </div>
 
         <footer className="flex justify-end p-4">

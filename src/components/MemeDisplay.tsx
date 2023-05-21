@@ -34,8 +34,6 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
   //     });
   // }, [downloadRef]);
 
-  console.log('너비: ', width);
-
   return (
     <div className="relative bg-blue-500 shadow-lg">
       <div ref={downloadRef} className="">

@@ -1,6 +1,7 @@
 import ModalContextProvider from '@/contexts/modalContext';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import MemesContextProvider from '@/contexts/memesContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
       <body
         className={`custom-scrollbar relative overflow-y-scroll bg-slate-100${inter.className}`}
       >
-        <ModalContextProvider>{children}</ModalContextProvider>
+        <MemesContextProvider>
+          <ModalContextProvider>{children}</ModalContextProvider>
+        </MemesContextProvider>
       </body>
     </html>
   );
