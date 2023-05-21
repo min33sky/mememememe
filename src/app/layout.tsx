@@ -1,3 +1,4 @@
+import ModalContextProvider from '@/contexts/modalContext';
 import './globals.css';
 import { Inter } from 'next/font/google';
 
@@ -16,9 +17,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`overflow-y-scroll custom-scrollbar px-2 lg:px-0 bg-slate-100 ${inter.className}`}
+        className={`custom-scrollbar relative overflow-y-scroll bg-slate-100 px-2 lg:px-0 ${inter.className}`}
       >
-        {children}
+        <ModalContextProvider>{children}</ModalContextProvider>
       </body>
     </html>
   );

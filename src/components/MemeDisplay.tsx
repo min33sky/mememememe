@@ -34,23 +34,27 @@ export default function MemeDisplay({ template, values }: MemeDisplayProps) {
   //     });
   // }, [downloadRef]);
 
+  console.log('너비: ', width);
+
   return (
-    <div ref={downloadRef}>
-      <div ref={memeRef} className="relative shadow-lg">
+    <div className="relative h-full bg-blue-500 shadow-lg">
+      <div ref={downloadRef} className="">
         <Image
+          ref={memeRef}
           src={template.background.src}
           width={template.background.width}
           height={template.background.height}
           alt={template.background.alt}
           style={{
-            width: '100%', //? 왜 필요?
-            overflow: 'hidden',
+            width: '100%',
+            maxWidth: '300px',
+            // overflow: 'hidden',
           }}
         />
         {template.textareas.map((textarea, index) => (
           <div
             key={index}
-            className="absolute flex justify-center align-center items-center"
+            className="align-center absolute flex items-center justify-center"
             style={{
               top: textarea.top * ratio,
               left: textarea.left * ratio,

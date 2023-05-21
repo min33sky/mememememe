@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  body,
+  /* body,
   html,
   :root {
     height: 100%;
-  }
+  } */
 }
 
 @layer components {

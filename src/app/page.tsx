@@ -1,5 +1,6 @@
 import MemeDisplay from '@/components/MemeDisplay';
 import MemeEditor from '@/components/MemeEditor';
+import Modal from '@/components/Modal';
 
 export default async function Home() {
   const memeTemplates: MemeTemplate[] = await fetch(
@@ -11,12 +12,12 @@ export default async function Home() {
   }).then((res) => res.json());
 
   return (
-    <main className="mx-auto flex max-w-[1200px] flex-col space-y-4">
+    <main className="mx-auto max-w-[1200px]">
       <MemeEditor templates={memeTemplates} />
 
       {/* TODO: 아래 부분 지우고 모달로 표시하기 */}
 
-      <h2 className="text-3xl font-bold ">Memes</h2>
+      {/* <h2 className="text-3xl font-bold ">Memes</h2>
 
       <div className="grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {memes.map((meme) => (
@@ -28,7 +29,7 @@ export default async function Home() {
             values={meme.values}
           />
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }

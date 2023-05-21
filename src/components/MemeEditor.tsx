@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Select from 'react-select';
 import MemeDisplay from './MemeDisplay';
 import { PencilIcon } from '@heroicons/react/24/outline';
+import { useModal } from '@/contexts/modalContext';
 
 const textValues = (template: MemeTemplate) =>
   template.textareas.reduce(
@@ -43,6 +44,8 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
+  const { openModal } = useModal();
+
   const onSubmit = async (data: {
     template: string;
     values: Record<string, string>;
@@ -63,6 +66,9 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
     });
     startTransition(() => {
       router.refresh();
+
+      //? 모달 열기
+      openModal();
     });
   };
 
@@ -77,9 +83,12 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
   }, [templates]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid w-full grid-cols-1 gap-6 rounded-md bg-white px-2 py-4 shadow-lg md:grid-cols-3 md:gap-4">
-        <div className="md:col-span-2">
+    <div className="max-h-screen overflow-hidden">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid h-screen grid-cols-1 grid-rows-2 gap-6 rounded-md bg-white px-2 py-4 shadow-lg md:grid-cols-3 md:grid-rows-1 md:gap-4"
+      >
+        <div className=" max-h-full md:col-span-2">
           <MemeDisplay template={template} values={values} />
         </div>
 
@@ -140,7 +149,7 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
             </button>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
