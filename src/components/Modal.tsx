@@ -16,14 +16,11 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
 
   const { memes } = useMemes();
 
-  console.log('memes: ', memes);
-
   const meme = memes.at(-1);
 
   const downloadButtonRef = useRef<HTMLButtonElement>(null);
 
   const onButtonClick = () => {
-    console.log('다운로드 버튼 클릭됨');
     downloadButtonRef.current?.click();
   };
 
@@ -42,7 +39,7 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
     >
       <div>
         <header className="relative rounded-t-2xl bg-white px-8 pt-6">
-          <h1 className="text-lg font-bold text-black">밈 생성 결과</h1>
+          <h1 className="text-lg font-bold text-black">결과</h1>
           <button
             type="button"
             onClick={closeModal}
@@ -52,21 +49,17 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
           </button>
         </header>
 
-        <div className="bg-slate-400 p-4">
-          <div>
-            {meme && (
-              <MemeDisplay
-                key={meme.id}
-                ref={downloadButtonRef}
-                template={
-                  memeTemplates.find(
-                    (template) => template.id === meme.template,
-                  )!
-                }
-                values={meme.values}
-              />
-            )}
-          </div>
+        <div className="mx-auto w-3/4 p-2 sm:w-1/2 sm:p-0">
+          {meme && (
+            <MemeDisplay
+              key={meme.id}
+              ref={downloadButtonRef}
+              template={
+                memeTemplates.find((template) => template.id === meme.template)!
+              }
+              values={meme.values}
+            />
+          )}
         </div>
 
         <footer className="flex justify-end p-4">
