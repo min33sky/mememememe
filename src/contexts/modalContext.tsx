@@ -28,7 +28,6 @@ export default function ModalContextProvider({
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   const openModal = useCallback(() => {
-    console.log('모달 열기 시도합니다.');
     setIsOpen(true);
     dialogRef.current?.showModal();
   }, []);

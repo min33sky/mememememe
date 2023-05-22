@@ -2,12 +2,13 @@
 
 import { useMemes } from '@/contexts/memesContext';
 import { useModal } from '@/hooks/useModal';
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import MemeDisplay from './MemeDisplay';
 import memeTemplates from '@/data/memeTemplates';
+import { toPng } from 'html-to-image';
 
 interface ModalProps {
-  // closeModal?: () => void;
+  content?: React.ReactNode;
 }
 
 const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
@@ -18,6 +19,13 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
   console.log('memes: ', memes);
 
   const meme = memes.at(-1);
+
+  const downloadButtonRef = useRef<HTMLButtonElement>(null);
+
+  const onButtonClick = () => {
+    console.log('다운로드 버튼 클릭됨');
+    downloadButtonRef.current?.click();
+  };
 
   return (
     <dialog
@@ -45,19 +53,27 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>((props, ref) => {
         </header>
 
         <div className="bg-slate-400 p-4">
-          {meme && (
-            <MemeDisplay
-              key={meme.id}
-              template={
-                memeTemplates.find((template) => template.id === meme.template)!
-              }
-              values={meme.values}
-            />
-          )}
+          <div>
+            {meme && (
+              <MemeDisplay
+                key={meme.id}
+                ref={downloadButtonRef}
+                template={
+                  memeTemplates.find(
+                    (template) => template.id === meme.template,
+                  )!
+                }
+                values={meme.values}
+              />
+            )}
+          </div>
         </div>
 
         <footer className="flex justify-end p-4">
-          <button className="rounded-md bg-teal-600 px-4 py-3 font-bold text-white transition hover:bg-teal-700">
+          <button
+            onClick={onButtonClick}
+            className="rounded-md bg-teal-600 px-4 py-3 font-bold text-white transition hover:bg-teal-700"
+          >
             저장하기
           </button>
         </footer>
