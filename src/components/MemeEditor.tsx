@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import Select from 'react-select';
 import MemeDisplay from './MemeDisplay';
 import { PencilIcon } from '@heroicons/react/24/outline';
-import { useModal } from '@/contexts/modalContext';
 import { useMemes } from '@/contexts/memesContext';
+import { useModal } from '@/hooks/useModal';
 
 const textValues = (template: MemeTemplate) =>
   template.textareas.reduce(
@@ -64,19 +64,17 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
       }),
     });
 
-    // addMeme({
-    //   ...data,
-    //   id: Math.random().toString(36).substr(2, 9),
-    // });
+    addMeme({
+      ...data,
+      id: Math.random().toString(36).substr(2, 9),
+    });
 
     startTransition(() => {
       router.refresh();
 
       //? 모달 열기
       console.log('모달 열기');
-      setTimeout(() => {
-        openModal();
-      }, 1000);
+      openModal();
     });
   };
 
