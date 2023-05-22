@@ -51,8 +51,7 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
     template: string;
     values: Record<string, string>;
   }) => {
-    console.log('#### 만드는 중 ####');
-
+    //! 필요없음
     await fetch('http://localhost:3000/api/memes', {
       method: 'POST',
       headers: {
@@ -71,9 +70,6 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
 
     startTransition(() => {
       router.refresh();
-
-      //? 모달 열기
-      console.log('모달 열기');
       openModal();
     });
   };
@@ -112,8 +108,6 @@ export default function MemeEditor({ templates }: MemeEditorProps) {
               defaultValue={selectorOptions[0]}
               onChange={(option) => {
                 if (!option) return;
-
-                console.log('요시: ', option);
                 setValue('template', option.value);
                 setValue(
                   'values',

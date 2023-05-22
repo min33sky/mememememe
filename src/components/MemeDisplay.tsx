@@ -1,7 +1,6 @@
 'use client';
 
 import { toPng } from 'html-to-image';
-import Image from 'next/image';
 import React from 'react';
 import { useCallback, useRef } from 'react';
 import { useElementSize } from 'usehooks-ts';
@@ -25,7 +24,9 @@ const MemeDisplay = React.forwardRef<HTMLButtonElement, MemeDisplayProps>(
         return;
       }
 
-      toPng(downloadRef.current, { cacheBust: true })
+      toPng(downloadRef.current, {
+        cacheBust: true,
+      })
         .then((dataUrl) => {
           const link = document.createElement('a');
           link.download = 'my-image-name.png';

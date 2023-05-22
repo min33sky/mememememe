@@ -2,10 +2,9 @@
 
 import { useMemes } from '@/contexts/memesContext';
 import { useModal } from '@/hooks/useModal';
-import React, { useCallback, useRef } from 'react';
+import React, { useRef } from 'react';
 import MemeDisplay from './MemeDisplay';
 import memeTemplates from '@/data/memeTemplates';
-import { toPng } from 'html-to-image';
 
 interface ModalProps {
   content?: React.ReactNode;
